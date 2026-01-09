@@ -1,25 +1,27 @@
- import '../css/MovieCard.css'
+import '../css/MovieCard.css';
 
-export default function MovieCard({movie}) {
-
-  function onFavoriteClick(){
-    alert("click")
+export default function MovieCard({ movie }) {
+  function onFavoriteClick() {
+    alert('click');
   }
 
   return (
-    <div className="movie-card">
-        <div>
-            <img src="{movie.url}" alt={movie.title} />
-            <div className="movie-overlay">
-                <button className="favorite-btn" onClick={onFavoriteClick}>
-                    ♥
-                </button>
-            </div>
-            <div className="movie-info">
-                <h3>{movie.title}</h3>
-                <p>{movie.release_date}</p>
-            </div>
+    <div className='movie-card'>
+      <div>
+        <img
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          alt={movie.title}
+        />
+        <div className='movie-overlay'>
+          <button className='favorite-btn' onClick={onFavoriteClick}>
+            ♥
+          </button>
         </div>
+        <div className='movie-info'>
+          <h3>{movie.title}</h3>
+          <p>{movie.release_date?.split('-')[0]}</p>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
