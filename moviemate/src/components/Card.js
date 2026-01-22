@@ -1,21 +1,27 @@
-import React from 'react'
-import { Link } from "react-router-dom";
-import BackupImage from "../assets/images/backup.png";
+import { Link } from 'react-router-dom';
+import Backup from '../assets/images/backup.png';
 
-export default function Card() {
-    return (
-        <div className="bg-white dark:bg-gray-800 block max-w-sm p-6 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm space-y-4">
-            <Link to="/">
-                <img className="rounded-lg" src={BackupImage} alt="" />
-            </Link>
-            <Link to="/">
-                <h5 className="mt-6 mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Streamlining your design process today.</h5>
-            </Link>
-            <p className="mb-6 text-gray-700 dark:text-gray-300">In today’s fast-paced digital landscape, fostering seamless collaboration among Developers and IT Operations.</p>
-            <Link to="/" className="inline-flex items-center text-gray-700 dark:text-gray-300 bg-gray-200 dark:bg-gray-700 box-border border border-gray-300 dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 shadow-sm font-medium leading-5 rounded-lg text-sm px-4 py-2.5 focus:outline-none">
-                Read more
-                <svg className="w-4 h-4 ms-1.5 rtl:rotate-180 -me-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 12H5m14 0-4 4m4-4-4-4" /></svg>
-            </Link>
-        </div>
-    )
-}
+export default function Card({ movie }) {
+  const { id, original_title, overview, poster_path } = movie;
+  const image = poster_path
+    ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+    : Backup;
+
+  return (
+    <div className='max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 m-3'>
+      <Link to={`/movie/${id}`}>
+        <img className='rounded-t-lg' src={image} alt='' />
+      </Link>
+      <div className='p-5'>
+        <Link to={`/movie/${id}`}>
+          <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>
+            {original_title}
+          </h5>
+        </Link>
+        <p className='mb-3 font-normal text-gray-700 dark:text-gray-400'>
+          {overview}
+        </p>
+      </div>
+    </div>
+  );
+};
